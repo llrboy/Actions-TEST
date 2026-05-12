@@ -10,6 +10,12 @@
 
 name: X86-IPv6-Luci23
 
+# 👇 这里是修复 403 的关键权限
+permissions:
+  contents: write
+  actions: read
+  checks: read
+
 on:
   repository_dispatch:
   workflow_dispatch:
