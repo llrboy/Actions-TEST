@@ -10,11 +10,6 @@
 
 name: X86-IPv6-Luci23
 
-# ========== 新增全局权限配置，修复删除Release权限不足 ==========
-permissions:
-  contents: write
-  releases: write
-
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -37,6 +32,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    # 权限移到job内部，解决 Unexpected value 'releases'
+    permissions:
+      contents: write
+      releases: write
            
     steps:
     - name: 🔍 Check initial disk space
@@ -229,6 +228,5 @@ jobs:
         keep_latest: 3
         delete_tags: true
       env:
-        # 消除Node20弃用警告
         ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
