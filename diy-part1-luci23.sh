@@ -10,16 +10,17 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-
+# 1. 更新插件源
 ./scripts/feeds update -a
+
+# 关键：直接删除 passwall 源码文件夹，从根源杜绝警告
+rm -rf package/feeds/luci/luci-app-passwall
+
+# 2. 安装所有插件（此时passwall已删除，不会被加载）
 ./scripts/feeds install -a
-# 卸载/取消安装 passwall
-./scripts/feeds uninstall luci-app-passwall
 
 # Add OpenClash
 git clone --depth=1 https://github.com/vernesong/OpenClash.git package/luci-app-openclash
-
-
 
 # Add luci-app-bandix
 git clone https://github.com/timsaya/openwrt-bandix.git package/bandix
