@@ -10,6 +10,12 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
+
+./scripts/feeds update -a
+./scripts/feeds install -a
+# 卸载/取消安装 passwall
+./scripts/feeds uninstall luci-app-passwall
+
 # Add OpenClash
 git clone --depth=1 https://github.com/vernesong/OpenClash.git package/luci-app-openclash
 
