@@ -9,6 +9,9 @@
 #
 
 name: X86-IPv6-Luci23
+permissions:
+  contents: write
+  pull-requests: write
 
 on:
   repository_dispatch:
